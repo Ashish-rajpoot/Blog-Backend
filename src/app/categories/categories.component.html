@@ -1,0 +1,160 @@
+<!-- <section class="container ">
+    <div class="row">
+        <div class="col-md-12 bg-theme-2 text-center shadow-effect p-5 categories ">
+            <h1 class="text-color-primary">
+                Categories
+            </h1>
+            <p>Add Categories To the list</p>
+            <form #categoryAdd='ngForm' (ngSubmit)="onSubmit(categoryAdd)">
+                <div class="row">
+                    <div class="col-md-10">
+                        <input 
+                        type="text" 
+                        name="category" 
+                        class="form-control" 
+                        placeholder="Category Name" 
+                        #newCategory = 'ngModel'
+                        ngModel
+                        required=""
+                        [ngClass]="{'is-invalid': newCategory.touched && newCategory.invalid}"
+                        >
+
+                        <div class="alert alert-danger" *ngIf=" newCategory.touched && newCategory.invalid">
+                            Category Field is Required
+                        </div>
+                    </div>
+                    <div class="col-md-2">
+                        <button type="submit" class="btn form-control"  [disabled]="newCategory.invalid"> Add</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</section>
+
+<div class="container mt-5">
+    <div class="row ">
+        <div class="col-md-12 ">
+            <div class="card">
+                <div class="card-body">
+                    <h1 class="text-color-primary text-center">
+                        Data
+
+                    </h1>
+                    <div class="col-md-8">
+                        <ul *ngFor="let data of userData">
+                            <li >
+                                {{ data}} 
+                                <button  (click)="updateData(data.id)">update</button>
+                                <button  (click)="deleteData(data.id)">delete</button> 
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div> -->
+
+
+<!-- <div class="div">
+    <input type="text" name="category" [(ngModel)]="category">
+    <button class="btn" *ngIf="!editMode" (click)="addCategory()">submit</button>
+</div>
+
+
+<ul *ngFor="let data of categoryList">
+    <li >
+        {{ data.category }} ============  
+        <button  (click)="editCategory(data)">edit</button>
+        <button *ngIf="editMode"  (click)="updateCategory(data)">update</button>
+        <button  (click)="deleteCategory(data)">delete</button> 
+    </li>
+</ul> -->
+
+<section class="container ">
+    <div class="row justify-content-center">
+        <div class="col-md-10 bg-theme-2 text-center shadow-effect p-5 categories ">
+            <h1 class="text-color-primary">
+                {{editStatus}} Categories
+            </h1>
+            <p>{{editStatus}} Categories To the list</p>
+            <form #categoryAdd='ngForm'  (ngSubmit)="addCategory(categoryAdd)">
+                <div class="row">
+                    <div class="col-md-8">
+                        <input type="text" name="category" class="form-control" placeholder="Category Name"
+                            #newCategory='ngModel' [(ngModel)]="category" required=""
+                            [ngClass]="{'is-invalid': newCategory.touched && newCategory.invalid}">
+
+                        <div class="alert alert-danger" *ngIf="newCategory.touched && newCategory.invalid">
+                            Category Field is Required
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="row" *ngIf="!editMode">
+                            <div class="col-md-6">
+                                <button type="submit" class="btn form-control button" [disabled]="newCategory.invalid">
+                                    {{editStatus}}</button>
+                            </div>
+                            <div class="col-md-6">
+                                <button type="reset" class="btn form-control button"> Reset</button>
+                            </div>
+                        </div>
+
+                        <div class="row" *ngIf="editMode">
+                            <div class="col-md-6">
+                                <button type="submit" class="btn form-control button" [disabled]="newCategory.invalid"
+                                >{{editStatus}}</button>
+                            </div>
+                            <div class="col-md-6">
+                                <button type="button" (click)="resetUserForm(categoryAdd)"
+                                    class="btn form-control button">Cancel</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</section>
+
+<div class="container mt-5 ">
+    <div class="row justify-content-center ">
+        <div class="col-md-6 ">
+            <div class="card shadow-effect">
+                <div class="card-body text-center">
+                    <!-- <h1 class="text-color-primary text-center">
+                        Data
+
+                    </h1> -->
+
+                    <div class="row justify-content-center ">
+                        <div class="col-md-12 ">
+                            <table class="table">
+                                <thead class="table-content">
+                                    <tr>
+                                        <th scope="col">Sr.No</th>
+                                        <th scope="col">Category Name</th>
+                                        <th colspan="1">Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody class="text-center">
+                                    <tr *ngFor="let data of categoryList; let i = index">
+                                        <th scope="row">{{i+1}}</th>
+                                        <td>{{data.category}}</td>
+                                        <td>
+                                            <button  (click)="editCategory(data)"
+                                                class="btn btn-primary ">Edit</button> &nbsp;
+                                            <button (click)="deleteCategory(data)"
+                                                class="btn btn-danger">Delete</button>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

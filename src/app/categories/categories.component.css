@@ -1,0 +1,31 @@
+.categories{
+    height: auto !important;
+}
+p{
+    margin-top: auto;
+    font-size: 1rem;
+}
+form{
+    margin-top: auto !important;
+}
+
+.button{
+    background-color: var(--primary-color);
+    color: var(--secondary-color);
+}
+button:hover{
+    background-color: var(--primary-color);
+    color: var(--secondary-color);
+}
+
+input[type="text"], button[type="submit"],button[type="reset"], button[type="button"]{
+    font-size: 1.5rem;
+}
+
+ul li{
+    font-size: 1.2rem;
+}
+
+table thead, table tbody {
+    font-size: 17px;
+}
