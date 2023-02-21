@@ -7,19 +7,21 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { FooterComponent } from './layouts/footer/footer.component';
 import { HeaderComponent } from './layouts/header/header.component';
 
-import { provideFirebaseApp, initializeApp } from '@angular/fire/app';
-import { provideFirestore, getFirestore } from '@angular/fire/firestore';
-import { CategoriesComponent } from './categories/categories.component';
-import { FormsModule } from '@angular/forms';
-import { ToastrModule, ToastrService } from 'ngx-toastr'
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { CategoriesService } from './services/categories.service';
-import { FIREBASE_OPTIONS } from '@angular/fire/compat';
-import { AddPostComponent } from './posts/add-post/add-post.component';
-import { NewPostComponent } from './posts/new-post/new-post.component';
 import { HttpClientModule } from '@angular/common/http';
-import {AngularEditorModule } from '@kolkov/angular-editor';
-import { ReactiveFormsModule } from '@angular/forms';
+import { initializeApp, provideFirebaseApp } from '@angular/fire/app';
+import { FIREBASE_OPTIONS } from '@angular/fire/compat';
+import { AngularFireStorageModule } from '@angular/fire/compat/storage';
+import { getFirestore, provideFirestore } from '@angular/fire/firestore';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { AngularEditorModule } from '@kolkov/angular-editor';
+import { ToastrModule, ToastrService } from 'ngx-toastr';
+import { CategoriesComponent } from './categories/categories.component';
+import { AllPostComponent } from './posts/all-post/all-post.component';
+import { NewPostComponent } from './posts/new-post/new-post.component';
+import { CategoriesService } from './services/categories.service';
+import { LoginComponent } from './auth/login/login.component';
+import { AngularFireAuthModule } from '@angular/fire/compat/auth';
 
 @NgModule({
   declarations: [
@@ -28,8 +30,9 @@ import { ReactiveFormsModule } from '@angular/forms';
     FooterComponent,
     DashboardComponent,
     CategoriesComponent,
-    AddPostComponent,
-    NewPostComponent
+    NewPostComponent,
+    AllPostComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
@@ -46,7 +49,9 @@ import { ReactiveFormsModule } from '@angular/forms';
     BrowserAnimationsModule,
     AngularEditorModule,
     HttpClientModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    AngularFireStorageModule,
+    AngularFireAuthModule
   ],
   providers: [
     CategoriesService,

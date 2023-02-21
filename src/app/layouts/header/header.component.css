@@ -10,3 +10,9 @@ header {
 a{
     text-decoration: none;
 }
+a button{
+    color: var(--primary-color);
+}
+.userLoad{
+    margin-right: 10px;
+}
