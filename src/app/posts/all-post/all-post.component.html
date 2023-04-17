@@ -34,18 +34,18 @@
                             <tbody class="text-center  ">
                                 <tr *ngFor="let data of postData; let  i = index">
                                     <td width="10">{{i + 1}}</td>
-                                    <td width="200px" height="200px"><img src="{{data.postImgPath}}"
-                                            class="img-thumbnail"></td>
+                                    <td width="200px"><img src="{{data.postImgPath}}"
+                                            class="img-thumbnail" style="height: 200px; width:200px"></td>
                                     <!-- <td width="200">{{data.excerpt}}</td> -->
                                     <td width="200">{{data.category.category}}</td>
                                     <td width="200">{{data.createdAt.toMillis() | date }}</td>
-                                    <td width="200">
+                                    <td width="300">
                                         <button type="button" class="btn btn-warning" routerLink="/post/new" [queryParams]="{id:data.id}">Edit</button>
                                         <button class="btn btn-danger m-2" (click)="deletePost(data.postImgPath,data.id)">Delete</button>
 
                                         <!-- Feature Buttons -->
                                         <button *ngIf="!data.isFeatured" class="btn btn-success m-2" (click)="markFeatured(data.id,true)">Mark Featured</button>
-                                        <button *ngIf="data.isFeatured" class="btn btn-secondary m-2" (click)="markFeatured(data.id,false)">Remove Featured</button>
+                                        <button *ngIf="data.isFeatured" class="btn btn-primary m-2" (click)="markFeatured(data.id,false)">Remove Featured</button>
                                     </td>
                                 </tr>
                             </tbody>

@@ -11,7 +11,7 @@
 <div class="container mt-5">
     <div *ngIf="postForm">
 
-        <form [formGroup]="postForm" (ngSubmit)="onSubmit()">
+        <form [formGroup]="postForm" (ngSubmit)="onSubmit()" >
             <div class="card shadow-effect">
                 <div class="card-body">
                     <div class="row">
@@ -62,7 +62,8 @@
                                     [ngClass]="{'is-invalid': fc['category'].touched && fc['category'].invalid}">
                                     <option value="" disabled>Please select the category</option>
                                     <option *ngFor="let category of categoryList;"
-                                        value="{{category.categoryId}}-{{category.category}}">{{category.category}}
+                                        value="{{category.category}}-{{category.categoryId}}">{{category.category}}
+                                        {{category.category.categoryId}}
                                     </option>
                                 </select>
                                 <div *ngIf="fc['category'].errors?.['required']">

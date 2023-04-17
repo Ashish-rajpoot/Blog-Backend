@@ -14,9 +14,10 @@ export class CategoriesComponent implements OnInit {
   constructor(private cs: CategoriesService, ) {
   }
   
+  // categoryList : Category[] = [];
   categoryList : Category[] = [];
   categoryObj : Category= {
-    id: '',
+    categoryId: '',
     category: ''
   };
   category : string = ""
@@ -49,31 +50,33 @@ editStatus : string = "Add"
   addCategory(formData : any){
     const categoryData : Category = {
       category : formData.value.category,
-      id: ''
+      categoryId: ''
     }
     if(this.editStatus=="Add"){
       this.cs.addCategory(categoryData)
       this.resetUserForm(formData);    
     }else if(this.editStatus=='Update'){
       // this.categoryAdd;
-      if(window.confirm("Are you sure you want to update?")){
+      // if(window.confirm("Are you sure you want to update?")){
+        // alert(this.id);
           this.categoryObj.category = this.category;
-          this.categoryObj.id = this.id;
+          this.categoryObj.categoryId = this.id;
           this.cs.updateCategory(this.categoryObj,this.categoryObj);
+          
           this.editMode = false;
           this.editStatus = "Add";
           this.resetUserForm(formData);
-      }
+      // }
     }
   }
 
   editCategory(category : Category){
+    console.log(category);
+    console.log(category.category);
     this.editStatus = "Update"
     this.category = category.category
-    this.id = category.id
+    this.id = category.categoryId
     this.editMode = true
-    // alert(this.editStatus)
-    // return category;
   }
   
   // updateCategory(formData : any){
@@ -89,13 +92,13 @@ editStatus : string = "Add"
   // }
 
   deleteCategory(category : Category){
-    if(window.confirm("Are you sure you want to delete this" + category.category +" category?" ))
+    // if(window.confirm("Are you sure you want to delete this" + category.category +" category?" ))
     this.cs.deleteCategory(category)
   }
   
-  deleteCategoryById(id : string){
-    alert(id);
-    this.cs.deleteCategoryById(id);
+  deleteCategoryById(categoryId : string){
+    // alert(id);
+    this.cs.deleteCategoryById(categoryId);
   }
 }
 

@@ -1,0 +1,45 @@
+<div class="container ">
+    <div class="row">
+        <div class="col-md-12 ">
+            <div class="card  shadow-effect bg-theme-2">
+                <div class="card-body text-center">
+                    <h1>
+                        Add new Post
+                    </h1>
+                    <p>You Can add new post Here</p>
+                    <br />
+                    <button class="btn btn-warning dashboard m-2" routerLink="/home">Back to Dashboard</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row justify-content-center mt-3 ">
+        <div class="col-md-12">
+            <div class="card shadow-effect ">
+                <div class="card-body text-center">
+                    <div class="table">
+                        <table class="table fs-6">
+                            <thead>
+                                <tr>
+                                    <th>No</th>
+                                    <th>Name</th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+                            <tbody class="text-center  ">
+                                <tr *ngFor="let data of Subscribers; let  i = index">
+                                    <td width="10">{{i + 1}}</td>
+                                    <td >{{data.name}}</td>
+                                    <td >
+                                        <button class="btn btn-danger m-2" (click)="deletePost(data.id)">Delete</button>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

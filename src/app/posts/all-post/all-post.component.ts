@@ -18,7 +18,6 @@ export class AllPostComponent implements OnInit {
 
   ngOnInit(): void {
     this.postservice.loadData().subscribe(data => {
-      console.log(data);
       this.postData = data;
     }, (err:any) => {
       console.log(err);

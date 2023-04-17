@@ -10,38 +10,39 @@ import { BehaviorSubject } from 'rxjs';
 export class AuthService {
 
   loggedIn:BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
+  isLoggedInGuard : boolean = false;
 
   constructor(private afas: AngularFireAuth ,
               private toster : ToastrService,
               private route : Router) { }
 
-  login(email:any, password:any) {
+   login(email:any, password:any) {
     this.afas.signInWithEmailAndPassword(email,password)
     .then(() => {
       this.toster.success('You are now logged in!');
+      this.loggedIn.next(true);
+      this.isLoggedInGuard = true;
       this.loadUser();
       this.route.navigate(['/home']);
-      this.loggedIn.next(true);
     })
     .catch((e) => {
-      // this.toster.error('You are not logged in!');
       this.toster.error(e);
     });
   }
-
-  loadUser(){
-    this.afas.authState.subscribe((user) => {
-      localStorage.setItem('user', JSON.stringify(user));
-    // console.log(JSON.parse(JSON.stringify(user)));
+  
+   loadUser(){
+     this.afas.authState.subscribe((user) => {
+       localStorage.setItem('user', JSON.stringify(user));
     });
   }
-
-  logout(){
+  
+  async logout(){
     this.afas.signOut();
     localStorage.removeItem('user');
-    this.route.navigate(['/login']);
-    this.toster.success('You are now logged out!');
     this.loggedIn.next(false);
+    this.isLoggedInGuard = false;
+    this.toster.success('You are now logged out!');
+    this.route.navigate(['/login']);
   }
 
   isLoggedIn(){
